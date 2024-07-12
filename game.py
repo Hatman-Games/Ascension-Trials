@@ -9,7 +9,7 @@ class game:
         pygame.init()
 
         pygame.display.set_caption('Game Window')
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode((1080, 720))
 
         self.clock = pygame.time.Clock()
 
@@ -18,7 +18,7 @@ class game:
         self.playerplaceholder_pos = [900, 540]
         self.movement = [False, False, False, False]
 
-        self.collision_area = pygame.Rect(50, 50, 300, 300)
+        self.collision_area = pygame.Rect(20, 20, 250, 250)
 
     def run(self):
         while True:
@@ -28,7 +28,10 @@ class game:
             self.screen.blit(self.playerplaceholder, self.playerplaceholder_pos)
 
             img_r = pygame.Rect(self.playerplaceholder_pos[0], self.playerplaceholder_pos[1], self.playerplaceholder.get_width(), self.playerplaceholder.get_height())
-
+            if img_r.colliderect(self.collision_area):
+                pygame.draw.rect(self.screen, (255, 255, 255), self.collision_area)
+            else:
+                pygame.draw.rect(self.screen, (253, 253, 253), self.collision_area)
             ## Closes game when X is clicked
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -106,6 +109,12 @@ class game:
                         self.movement[2] = False
                     elif event.key == pygame.K_d:
                         self.movement[3] = False
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_c:
+                        if img_r.colliderect(self.collision_area):
+                            print('Collision Detected!')
+                        else:
+                            print('No Collision Detected!')
              ## Updates the game at 60 frames per second    
             pygame.display.update()
             self.clock.tick(60)

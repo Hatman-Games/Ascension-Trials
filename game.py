@@ -2,9 +2,10 @@
 import sys
 import pygame
 
-class Game:
+class game:
     ## Initializing the game
     def __init__(self):
+
         pygame.init()
 
         pygame.display.set_caption('Game Window')
@@ -16,12 +17,17 @@ class Game:
 
         self.playerplaceholder_pos = [900, 540]
         self.movement = [False, False, False, False]
+
+        self.collision_area = pygame.Rect(50, 50, 300, 300)
+
     def run(self):
         while True:
             self.screen.fill((0, 0, 0))
             self.playerplaceholder_pos[1] += (self.movement[1] - self.movement[0]) * 5
             self.playerplaceholder_pos[0] += (self.movement[3] - self.movement[2]) * 5
             self.screen.blit(self.playerplaceholder, self.playerplaceholder_pos)
+
+            img_r = pygame.Rect(self.playerplaceholder_pos[0], self.playerplaceholder_pos[1], self.playerplaceholder.get_width(), self.playerplaceholder.get_height())
 
             ## Closes game when X is clicked
             for event in pygame.event.get():
@@ -31,7 +37,7 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         pygame.quit()
-            ## Input handling for player movement (Arrow Keys and WASD)
+                ## Input handling for player movement (Arrow Keys and WASD)
                 ## Hardcoded main controls for player movement (Arrow keys)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
@@ -100,8 +106,8 @@ class Game:
                         self.movement[2] = False
                     elif event.key == pygame.K_d:
                         self.movement[3] = False
-        ## Updates the game at 60 frames per second    
+             ## Updates the game at 60 frames per second    
             pygame.display.update()
             self.clock.tick(60)
 
-Game().run()
+game().run()

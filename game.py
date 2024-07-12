@@ -1,18 +1,20 @@
+## importing necessary libraries
 import sys
-
 import pygame
+
 class Game:
+    ## Initializing the game
     def __init__(self):
         pygame.init()
 
-        pygame.display.set_caption('Ascension Trials | A game by Hatman Games')
-        self.screen = pygame.display.set_mode((1080, 720))
+        pygame.display.set_caption('Game Window')
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
         self.clock = pygame.time.Clock()
 
         self.playerplaceholder = pygame.image.load('data/sprites/player-placeholder.png')
 
-        self.playerplaceholder_pos = [500, 350]
+        self.playerplaceholder_pos = [900, 540]
         self.movement = [False, False, False, False]
     def run(self):
         while True:
@@ -21,10 +23,16 @@ class Game:
             self.playerplaceholder_pos[0] += (self.movement[3] - self.movement[2]) * 5
             self.screen.blit(self.playerplaceholder, self.playerplaceholder_pos)
 
+            ## Closes game when X is clicked
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+            ## Input handling for player movement (Arrow Keys and WASD)
+                ## Hardcoded main controls for player movement (Arrow keys)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
                         self.movement[0] = True
@@ -60,6 +68,7 @@ class Game:
                     elif event.key == pygame.K_RIGHT:
                         self.movement[3] = False
                         print('right')
+                ## Hardcoded Alternate controls for player movement (WASD)
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_w:
                         self.movement[0] = True
@@ -91,7 +100,7 @@ class Game:
                         self.movement[2] = False
                     elif event.key == pygame.K_d:
                         self.movement[3] = False
-                
+        ## Updates the game at 60 frames per second    
             pygame.display.update()
             self.clock.tick(60)
 

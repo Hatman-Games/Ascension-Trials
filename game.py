@@ -60,6 +60,38 @@ class Game:
                     elif event.key == pygame.K_RIGHT:
                         self.movement[3] = False
                         print('right')
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w:
+                        self.movement[0] = True
+                        print('up (alt)')
+                    elif event.key == pygame.K_s:
+                        self.movement[1] = True
+                        print('down (alt)')
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_w:
+                        self.movement[0] = False
+                    elif event.key == pygame.K_s:
+                        self.movement[1] = False 
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_w:
+                        self.movement[0] = True
+                        print('up (alt)')
+                    elif event.key == pygame.K_s:
+                        self.movement[1] = True
+                        print('down (alt)')
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_a:
+                        self.movement[2] = True
+                        print('left (alt)')
+                    elif event.key == pygame.K_d:
+                        self.movement[3] = True
+                        print('right (alt)')
+                if event.type == pygame.KEYUP:
+                    if event.key == pygame.K_a:
+                        self.movement[2] = False
+                    elif event.key == pygame.K_d:
+                        self.movement[3] = False
+                
             pygame.display.update()
             self.clock.tick(60)
 

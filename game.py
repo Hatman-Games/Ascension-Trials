@@ -20,6 +20,8 @@ class game:
 
         self.collision_area = pygame.Rect(20, 20, 250, 250)
 
+        print('Game Started Successfully!')
+
     def run(self):
         while True:
             self.screen.fill((0, 0, 0))
@@ -114,7 +116,7 @@ class game:
                         if img_r.colliderect(self.collision_area):
                             print('Collision Detected!')
                         else:
-                            print('No Collision Detected! WASTE OF MY TIME!')
+                            print('No Collision Detected!')
              ## Updates the game at 60 frames per second    
             pygame.display.update()
             self.clock.tick(60)

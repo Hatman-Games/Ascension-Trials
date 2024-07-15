@@ -114,7 +114,7 @@ class game:
                         if img_r.colliderect(self.collision_area):
                             print('Collision Detected!')
                         else:
-                            print('No Collision Detected!')
+                            print('No Collision Detected! WASTE OF MY TIME!')
              ## Updates the game at 60 frames per second    
             pygame.display.update()
             self.clock.tick(60)

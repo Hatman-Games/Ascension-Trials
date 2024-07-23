@@ -8,7 +8,7 @@ class game:
 
         pygame.init()
 
-        pygame.display.set_caption('Game Window')
+        pygame.display.set_caption('Ascension Trials')
         self.screen = pygame.display.set_mode((1080, 720))
 
         self.clock = pygame.time.Clock()
